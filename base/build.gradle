@@ -1,0 +1,132 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.chenenyu.router'
+
+android {
+    compileSdkVersion 29
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation files('libs/alicloud-android-hotfix-3.2.14.aar')
+    implementation files('libs/alicloud-android-utdid-1.1.5.4.jar')
+    implementation files('libs/alicloud-android-beacon-1.0.4.3.jar')
+    implementation files('libs/alicloud-android-utils-1.1.6.4.jar')
+    implementation files('libs/fastjson-1.1.54.android.jar')
+    implementation files('libs/alicloud-android-ut-5.4.3.jar')
+
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation "com.android.support.test:runner:$rootProject.test_runner"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espresso_core"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    api "com.android.support:recyclerview-v7:$rootProject.support"
+    api "com.android.support:cardview-v7:$rootProject.support"
+    api "com.android.support:design:$rootProject.support"
+    api "com.android.support:support-core-utils:$rootProject.support"
+    api "com.android.support:multidex:$rootProject.multidex"
+    api "com.android.support.constraint:constraint-layout:$rootProject.constraint"
+
+    api "com.jakewharton.rxrelay2:rxrelay:${rootProject.rxrelay}"
+
+    api "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
+    api "com.squareup.retrofit2:converter-gson:$rootProject.retrofit"
+    api "com.squareup.retrofit2:retrofit-mock:$rootProject.retrofit"
+    api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit"
+    api "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
+    api "com.google.dagger:dagger:$rootProject.dagger"
+    api "com.google.dagger:dagger-android:$rootProject.dagger"
+    api "com.google.dagger:dagger-android-support:$rootProject.dagger"
+    api "com.github.bumptech.glide:glide:$rootProject.glide"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glide"
+    api "com.github.bumptech.glide:okhttp3-integration:$rootProject.glide"
+    api "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2"
+    api "io.reactivex.rxjava2:rxandroid:$rootProject.rx_android"
+    api "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbinding"
+    api 'android.arch.navigation:navigation-fragment-ktx:' + rootProject.navigationVersion
+    api 'android.arch.navigation:navigation-ui-ktx:' + rootProject.navigationVersion
+    api 'com.github.chrisbanes:PhotoView:2.1.4'
+    api "com.safframework.utils:saf-kotlin-ext:0.0.3.6"
+    api "com.safframework.livedata:livedata-ext:${rootProject.livedata_ext}"
+
+    api 'com.just.agentweb:agentweb:' + rootProject.agentweb
+
+    api "com.safframework.utils:saf-kotlin-ext:${rootProject.saf_kotlin_ext}"
+    api("com.safframework.log:saf-logginginterceptor:$rootProject.saf_okhttp_log", {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+    })
+    api("com.safframework.log:saf-log:$rootProject.saf_log", {
+        exclude group: "com.android.support", module: "appcompat-v7"
+    })
+    api("com.safframework.utils:saf-kotlin-utils:${rootProject.saf_kotlin_utils}", {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'tony-common', module: 'tony-common-utils'
+    })
+    api('com.facebook.android:facebook-android-sdk:4.36.0') {
+        exclude group: 'com.google.zxing', module: 'core'
+    }
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glide"
+
+    api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    api('com.jaeger.statusbarutil:library:1.5.0', {
+        exclude group: 'com.android.support', module: 'design'
+    })
+    api 'com.safframework.delegate:prefs-delegate:1.0.0'
+    debugApi 'com.squareup.leakcanary:leakcanary-android:' + rootProject.leakcanary
+    releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:' + rootProject.leakcanary
+
+    //相册
+    api('com.github.LuckSiege.PictureSelector:picture_library:v2.2.2', {
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    })
+
+    api "com.chenenyu.router:router:$rootProject.router"
+    api "com.google.zxing:core:$rootProject.zxing"
+
+    implementation "androidx.room:room-runtime:$rootProject.room_version"
+    annotationProcessor "androidx.room:room-compiler:$rootProject.room_version"
+    implementation "androidx.room:room-ktx:$rootProject.room_version"
+    implementation "androidx.room:room-rxjava2:$rootProject.room_version"
+    implementation "androidx.room:room-guava:$rootProject.room_version"
+    testImplementation "androidx.room:room-testing:$rootProject.room_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$rootProject.lifecycle_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-service:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-process:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$rootProject.lifecycle_version"
+    testImplementation "androidx.arch.core:core-testing:$rootProject.arch_version"
+}

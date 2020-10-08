@@ -1,0 +1,10 @@
+include ':idcarddetele'
+include ':facedetele'
+include ':video'
+include ':slagtruck'
+include ':raise'
+include ':codec'
+include ':base'
+include ':labourui'
+include ':app'
+rootProject.name = "AIBuildingThree"
